@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Эта настройка будет срабатывать, когда пушится тег, начинающийся с "v"
+      - 'v*'
 
 jobs:
   build:
@@ -16,13 +16,13 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.18'
+          go-version: '1.23'
 
       - name: Install dependencies
         run: go mod tidy
 
       - name: Build Go program
-        run: go build -o my_program.exe
+        run: go build -o server.exe
 
       - name: Archive templates and styles using PowerShell
         run: |
@@ -32,7 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            my_program.exe
+            server.exe
             release_files.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
