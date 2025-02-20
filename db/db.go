@@ -12,6 +12,7 @@ import (
 var db *sql.DB
 
 // Функция для инициализации базы данных
+// da
 func InitDB() error {
 	var err error
 	db, err = sql.Open("mysql", "root:cAz6wv5fhJ0RCgqPVGMY@tcp(127.0.0.1:3306)/ibm")
