@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Изменение профиля студента</title>
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+	</head>
+	<body>
+		<main class="main">
+			<div class="container">
+				<div class="inner">
+					<div class="inner_form_block">
+						<h1 class="inner_form_block_title">Изменение профиля студента</h1>
+
+						<form
+							action="/update-student"
+							method="POST"
+							class="inner_form_block_form"
+						>
+							<!-- Скрытое поле для StudentID -->
+							<input
+								type="hidden"
+								name="student_id"
+								value="{{.Student.StudentID}}"
+							/>
+
+							<!-- Поля для имени и фамилии -->
+							<div class="inner_form_block_form_box">
+								<label for="first_name">Имя</label>
+								<input
+									type="text"
+									id="first_name"
+									name="first_name"
+									value="{{.Student.FirstName}}"
+									required
+								/>
+							</div>
+
+							<div class="inner_form_block_form_box">
+								<label for="last_name">Фамилия</label>
+								<input
+									type="text"
+									id="last_name"
+									name="last_name"
+									value="{{.Student.LastName}}"
+									required
+								/>
+							</div>
+
+							<div class="inner_form_block_form_box">
+								<label for="record_book">Номер зачетки</label>
+								<input
+									type="text"
+									id="record_book"
+									name="record_book"
+									value="{{.Student.RecordBook}}"
+									required
+								/>
+							</div>
+
+							<!-- Список факультетов -->
+							<div class="inner_form_block_form_box">
+								<label for="faculty">Факультет</label>
+								<select id="faculty" name="faculty_id" required>
+									{{range .Faculties}}
+									<option
+										value="{{.FacultyID}}"
+										{{if
+										eq
+										.FacultyID
+										$.Student.FacultyID}}selected{{end}}
+									>
+										{{.FacultyName}}
+									</option>
+									{{end}}
+								</select>
+							</div>
+
+							<!-- Список групп -->
+							<div class="inner_form_block_form_box">
+								<label for="group">Группа</label>
+								<select id="group" name="group_id" required>
+									{{range .Groups}}
+									<option
+										value="{{.GroupID}}"
+										{{if
+										eq
+										.GroupID
+										$.Student.GroupID}}selected{{end}}
+									>
+										{{.GroupName}}
+									</option>
+									{{end}}
+								</select>
+							</div>
+							{{if .Error}}
+							<div class="error">{{.Error.Message}}</div>
+							{{end}}
+							<div class='button_block'>
+								<button type="submit" class="inner_form_block_submit">
+									Сохранить изменения
+								</button>
+								<button
+									type="button"
+									class="inner_form_block_btn"
+									onclick="window.location.href = '/delete-student/{{.Student.StudentID}}';"
+								>
+									Удалить студента
+								</button>
+							</div>
+							<a href="/"><button type="button">На главную страницу</button></a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

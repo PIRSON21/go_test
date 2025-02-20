@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+		<title>Добавить тему диплома</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<main class="main">
+				<div class="container">
+					<div class="inner">
+						<div class="inner_form_block">
+							<h1 class="inner_form_block_title">Добавить тему диплома</h1>
+
+							<form
+								action="/addTheme/"
+								method="POST"
+								class="inner_form_block_form"
+							>
+								<!-- Поле для ввода названия темы -->
+
+								<div class="inner_form_block_form_box">
+									<label class="theme_title_label" for="theme_title"
+										>Название темы</label
+									>
+									<input
+										type="text"
+										id="theme_title"
+										name="theme_title"
+										required
+										placeholder="Название темы"
+									/>
+								</div>
+								<!-- Выпадающий список для выбора преподавателя -->
+								<div class="inner_form_block_form_box">
+									<label class="teacher_label" for="teacher"
+										>Преподаватель</label
+									>
+									<select id="teacher" name="teacher_id" required>
+										<option value="">Выберите преподавателя</option>
+										{{range .Teachers}}
+										<option value="{{.TeacherID}}">
+											{{.LastName}} {{.FirstName}} {{ if .MiddleName.Valid
+											}}{{.MiddleName.String}}{{end}}
+										</option>
+										{{end}}
+									</select>
+								</div>
+								{{if .Error}}
+									<div class="error">{{.Error.Message}}</div>
+								{{end}}
+
+								<button type="submit" class="inner_form_block_submit">
+									Добавить тему
+								</button>
+								<a href="/"
+									><button type="button">На главную страницу</button></a
+								>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

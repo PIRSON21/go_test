@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Оценки по диплому</title>
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+	</head>
+	<body>
+		<main class="main">
+			<div class="container">
+				<div class="inner">
+					<div class="inner_form_block">
+						<h1 class="inner_form_block_title">Оценки по диплому</h1>
+
+						<form action="/grade/" method="POST" class="inner_form_block_form">
+							<!-- Скрытое поле для ThemeID -->
+							<input type="hidden" name="theme_id" value="{{.Theme.ThemeID}}" />
+
+							<!-- Отображение темы диплома -->
+							<div class='inner_form_block_form_box'>
+								<label for="theme_title">Тема диплома</label>
+								<input
+									type="text"
+									id="theme_title"
+									name="theme_title"
+									value="{{.Theme.Title}}"
+									readonly
+								/>
+							</div>
+
+							<!-- Отображение имени преподавателя -->
+							<div class='inner_form_block_form_box'>
+								<label for="teacher_name">Преподаватель</label>
+								<input
+									type="text"
+									id="teacher_name"
+									name="teacher_name"
+									value="{{.Theme.TeacherLastName}} {{.Theme.TeacherFirstName}} {{if .Theme.TeacherMiddleName.Valid}}{{.Theme.TeacherMiddleName.String}}{{end}}"
+									readonly
+								/>
+							</div>
+
+							<!-- Отображение информации о студенте -->
+							<div class='inner_form_block_form_box'>
+								<label for="student_name">Студент</label>
+								<input
+									type="text"
+									id="student_name"
+									name="student_name"
+									value="{{if .Theme.StudentID.Valid }}{{.Theme.StudentLastName.String}} {{.Theme.StudentFirstName.String}}{{else}} Нет {{end}}"
+									readonly
+								/>
+							</div>
+
+							<div class='inner_form_block_form_box'>
+								<label for="student_record_book">Номер зачетной книжки</label>
+								<input
+									type="text"
+									id="student_record_book"
+									name="student_record_book"
+									value="{{if .Theme.StudentRecordBook.Valid}} {{.Theme.StudentRecordBook.String}} {{else}} Не указан {{end}}"
+									readonly
+								/>
+							</div>
+
+							<!-- Поля для ввода оценок -->
+							<div class='inner_form_block_form_box'>
+								<label for="test_mark">Оценка за тест</label>
+								<input
+									type="number"
+									id="test_mark"
+									name="test_mark"
+									value="{{if .Theme.TestMark.Valid}}{{.Theme.TestMark.Int64}}{{end}}"
+									required
+								/>
+							</div>
+
+							<div class='inner_form_block_form_box'>
+								<label for="diplom_mark">Оценка за диплом</label>
+								<input
+									type="number"
+									id="diplom_mark"
+									name="diplom_mark"
+									value="{{if .Theme.DiplomMark.Valid}}{{.Theme.DiplomMark.Int64}}{{end}}"
+									required
+								/>
+							</div>
+							{{if .Error}}
+							<div class="error">{{.Error.Message}}</div>
+							{{end}}
+							<button type="submit" class="inner_form_block_submit">
+								Сохранить оценки
+							</button>
+							<a href="/"><button type="button">На главную страницу</button></a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

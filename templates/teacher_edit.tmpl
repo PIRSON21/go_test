@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../styles/styles.css"/>
+    <link rel="stylesheet" href="../styles/reset.css"/>
+    <link rel="stylesheet" href="../styles/header.css"/>
+    <title>Обновить преподавателя</title>
+</head>
+<body>
+<main class="main">
+    <div class="container">
+        <div class="inner">
+            <div class="inner_form_block">
+                <h1 class="inner_form_block_title">
+                    Обновить данные преподавателя
+                </h1>
+
+                <form
+                        action="/teacher/"
+                        method="POST"
+                        class="inner_form_block_form"
+                >
+                    <!-- Скрытое поле для TeacherID -->
+                    <input
+                            type="hidden"
+                            name="teacher_id"
+                            value="{{.Teacher.TeacherID}}"
+                    />
+
+                    <!-- Поля для имени, отчества и фамилии преподавателя -->
+                    <div class="inner_form_block_form_box">
+                        <label for="first_name">Имя</label>
+                        <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                value="{{.Teacher.FirstName}}"
+                                required
+                        />
+                    </div>
+
+                    <div class="inner_form_block_form_box">
+                        <label for="middle_name">Отчество</label>
+                        <input
+                                type="text"
+                                id="middle_name"
+                                name="middle_name"
+                                value="{{if .Teacher.MiddleName.Valid}}{{.Teacher.MiddleName.String}}{{end}}"
+                                required
+                        />
+                    </div>
+
+                    <div class="inner_form_block_form_box">
+                        <label for="last_name">Фамилия</label>
+                        <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                value="{{.Teacher.LastName}}"
+                                required
+                        />
+                    </div>
+
+                    <div class="inner_form_block_form_box">
+                        <label for="last_name">Адрес электронной почты</label>
+                        <input type="text" id="email" name="email"
+                               value="{{if .Teacher.Email.Valid}}{{.Teacher.Email.String}}{{end}}" required>
+                    </div>
+
+                    <div class="inner_form_block_form_box">
+                        <label for="last_name">Номер телефона</label>
+                        <input type="text" id="phone" name="phone"
+                               value="{{if .Teacher.Phone.Valid}}{{.Teacher.Phone.String}}{{end}}" required>
+                    </div>
+
+                    <!-- Список Grade (оценка или категория преподавателя) -->
+                    <div class="inner_form_block_form_box">
+                        <label for="grade">Звание</label>
+                        <select id="grade" name="grade_id" required>
+                            <option value="">Выберите градацию</option>
+                            {{range .Grades}}
+                                <option
+                                        value="{{.GradeID}}"
+                                        {{if
+                                        eq
+                                        .GradeID
+                                        $.Teacher.Grade.GradeID}}selected{{end}}
+                                >
+                                    {{.GradeName}}
+                                </option>
+                            {{end}}
+                        </select>
+                    </div>
+
+                    <!-- Список AcademicTitle (академическая степень) -->
+                    <div class="inner_form_block_form_box">
+                        <label for="academic_title">Академическая степень</label>
+                        <select id="academic_title" name="academic_title_id">
+                            <option value="">Выберите академическую степень</option>
+                            {{range .AcademicTitles}}
+                                <option
+                                        value="{{.AcademicTitleID.Int64}}"
+                                        {{if
+                                        eq
+                                        .AcademicTitleID.Int64
+                                        $.Teacher.AcademicTitle.AcademicTitleID.Int64}}selected{{end}}
+                                >
+                                    {{.AcademicTitleName.String}}
+                                </option>
+                            {{end}}
+                        </select>
+                    </div>
+
+                    <!-- Список Departments (кафедры) с множественным выбором -->
+                    <div class="inner_form_block_form_box">
+                        <label for="departments">Кафедры</label>
+                        <select
+                                id="departments"
+                                name="department_ids"
+                                multiple
+                                required
+                        >
+                            {{range .Departments}}
+                                <option
+                                        value="{{.DepartmentID}}"
+                                        {{if
+                                        index
+                                        $.SelectedDept
+                                        .DepartmentID}}selected{{end}}
+                                >
+                                    {{.DepartmentName}}
+                                </option>
+                            {{end}}
+                        </select>
+                    </div>
+                    <div class="button_block">
+                        <button type="submit" class="inner_form_block_submit">
+                            Сохранить изменения
+                        </button>
+                        <button
+                                type="button"
+                                class="inner_form_block_btn"
+                                onclick="window.location.href = '/delete-teacher/{{.Teacher.TeacherID}}';"
+                        >
+                            Удалить преподавателя
+                        </button>
+                    </div>
+                    <a href="/">
+                        <button type="button">На главную страницу</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

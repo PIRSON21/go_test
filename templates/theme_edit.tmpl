@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Изменение темы диплома</title>
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+	</head>
+	<body>
+		<main class="main">
+			<div class="container">
+				<div class="inner">
+					<div class="inner_form_block">
+						<h1 class="inner_form_block_title">Изменение темы диплома</h1>
+
+						<form
+							action="/saveTheme/"
+							method="POST"
+							class="inner_form_block_form"
+						>
+							<div class="inner_form_block_form_box">
+								<label for="theme_name">Название темы</label>
+								<input
+									type="text"
+									id="theme_name"
+									name="theme_name"
+									value="{{.Theme.Title}}"
+									required
+								/>
+							</div>
+
+							<div class="inner_form_block_form_box">
+								<input
+									type="text"
+									id="theme_id"
+									name="theme_id"
+									value="{{.Theme.ThemeID}}"
+									hidden
+								/>
+							</div>
+
+							<div class="inner_form_block_form_box">
+								<label for="teacher">Преподаватель</label>
+								<select id="teacher" name="teacher_id" required>
+									{{range $teacher := .Teachers}}
+									<option
+										value="{{.TeacherID}}"
+										{{if
+										eq
+										.TeacherID
+										$.Theme.TeacherID
+										}}selected{{end}}
+									>
+										{{.LastName}} {{.FirstName}} {{ if .MiddleName.Valid
+										}}{{.MiddleName.String}}{{end}}
+									</option>
+									{{end}}
+								</select>
+							</div>
+							{{if .Error}}
+							<div class="error">{{.Error.Message}}</div>
+							{{end}}
+							<div class="button_block">
+								<button type="submit" class="inner_form_block_submit">
+									Сохранить изменения
+								</button>
+								<button
+									type="button"
+									class="inner_form_block_btn"
+									onclick="window.location.href = '/delete-theme/{{.Theme.ThemeID}}';"
+								>
+									Удалить тему
+								</button>
+							</div>
+                            <a href="/"><button type="button">На главную страницу</button></a>
+						</form>
+					
+						
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

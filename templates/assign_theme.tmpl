@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Назначить студента на тему диплома</title>
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+		<link rel="stylesheet" href="../styles/assign_theme.css" />
+	</head>
+	<body>
+		<main class="main">
+			<div class="container">
+				<div class="inner">
+					<div class="inner_form_block">
+						<h1 class="inner_form_block_title">
+							Назначить студента на тему диплома
+						</h1>
+
+						<form
+							action="/assignTheme/"
+							method="POST"
+							class="inner_form_block_form"
+						>
+							<!-- Отображаем название темы -->
+							<div class="inner_form_block_form_box">
+								<label for="theme_name">Тема диплома</label>
+								<input
+									type="text"
+									id="theme_name"
+									name="theme_name"
+									value="{{.Theme.Title}}"
+									readonly
+								/>
+							</div>
+
+							<!-- Отображаем имя преподавателя -->
+							<div class="inner_form_block_form_box">
+								<label for="teacher">Преподаватель</label>
+								<input
+									type="text"
+									id="teacher"
+									name="teacher"
+									value="{{.Theme.TeacherLastName}} {{.Theme.TeacherFirstName}} {{if .Theme.TeacherMiddleName.Valid}}{{.Theme.TeacherMiddleName.String}}{{end}} "
+									readonly
+								/>
+							</div>
+
+							<!-- Скрытое поле для хранения ID студента -->
+							<input
+								type="hidden"
+								name="theme_id"
+								id="theme_id"
+								value="{{.Theme.ThemeID}}"
+							/>
+
+							<!-- Список студентов -->
+							<div class="inner_form_block_form_box">
+								<label for="student">Студент</label>
+								<select id="student" name="student_record_book" required>
+									<option value="">Выберите студента</option>
+									{{range .Students}}
+									<option
+										value="{{.RecordBook}}"
+										{{if
+										eq
+										.StudentID
+										$.Theme.StudentID.Int64}}selected{{end}}
+									>
+										{{.LastName}} {{.FirstName}} - {{.RecordBook}}
+									</option>
+									{{end}}
+								</select>
+							</div>
+							{{if .Error}}
+							<div class="error">{{.Error.Message}}</div>
+							{{end}}
+							<button
+								type="submit"
+								class="inner_form_block_submit"
+							>
+								Назначить студента
+							</button>
+							<a href="/"><button type="button">На главную страницу</button></a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

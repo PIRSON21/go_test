@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Оценки студентов</title>
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/reset.css" />
+		<link rel="stylesheet" href="../styles/header.css" />
+	</head>
+	<body>
+		<main class="main">
+			<div class="container">
+				<div class="inner">
+					<div class="inner_table_block">
+						<h1 class="inner_form_block_title">Оценки студентов</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>ФИО</th>
+									<th>Оценка на госэкзамене</th>
+									<th>Оценка на защите дипломной работы</th>
+									<th>Средний балл</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{range .}}
+								<tr>
+									<td colspan="5" style="text-align: center">
+										{{ .FacultyName }}
+									</td>
+								</tr>
+								{{range .Groups}}
+								<tr>
+									<td colspan="5" style="text-align: center">{{.GroupName}}</td>
+								</tr>
+								{{range .Students}}
+								<tr>
+									<td style="text-align: center">{{.StudentFullName}}</td>
+									<td style="text-align: center">{{.TestMark}}</td>
+									<td style="text-align: center">{{.DiplomMark}}</td>
+									<td style="text-align: center">{{.AverageMark}}</td>
+								</tr>
+								{{end}}
+								<tr>
+									<td colspan="5" style="text-align: center">
+										Средний балл по группе: {{printf "%.2f" .GroupAvg}}
+									</td>
+								</tr>
+								{{end}}
+								<tr>
+									<td colspan="5" style="text-align: center">
+										Средний балл по факультету: {{printf "%.2f" .FacultyAvg}}
+									</td>
+								</tr>
+								{{end}}
+							</tbody>
+						</table>
+						<div class="button_block" style="display: flex;">
+						<a href="/" class="inner_form_block_submit" style="color:#fff">Назад</a></div>
+					</div>
+				</div>
+			</div>
+
+		</main>
+	</body>
+</html>

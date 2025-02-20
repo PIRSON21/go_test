@@ -1,0 +1,287 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  max-width: 1360px;
+  padding: 0 40px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 1;
+}
+
+main {
+  padding: 100px 0;
+  min-height: 280px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  position: relative;
+  min-height: 100%;
+  background-color: #ebebee;
+}
+
+input,
+select {
+  border: solid 1px rgb(0, 0, 0);
+  border-radius: 12px;
+  padding: 8px 20px 8px 20px;
+  line-height: 100%;
+  color: rgb(0, 0, 0);
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
+}
+input option,
+select option {
+  line-height: 100%;
+  color: rgb(0, 0, 0);
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+input::-webkit-input-placeholder, select::-webkit-input-placeholder {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+}
+input::-moz-placeholder, select::-moz-placeholder {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+}
+input:-ms-input-placeholder, select:-ms-input-placeholder {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+}
+input::-ms-input-placeholder, select::-ms-input-placeholder {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+}
+input::placeholder,
+select::placeholder {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+}
+
+label {
+  line-height: 130%;
+  color: rgb(0, 0, 0);
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.inner_form_block {
+  margin: auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.inner_form_block_title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 100%;
+}
+
+.inner_form_block_form {
+  border-radius: 12px;
+  padding: 80px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 2px 3px 0.2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 2px 3px 0.2px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  gap: 15px;
+}
+.inner_form_block_form a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.inner_form_block_form a button {
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  cursor: pointer;
+  color: #0000c5;
+}
+
+.inner_form_block_submit {
+  margin: auto auto 10px;
+  border-radius: 12px;
+  background-color: #0000c5;
+  color: #ebebee;
+  padding: 12px 24px;
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  cursor: pointer;
+  margin-top: 30px;
+  min-width: 232px;
+  color:#fff;
+  justify-content: center;
+}
+.inner_form_block_submit:hover {
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  background-color: rgba(0, 0, 197, 0.7);
+}
+
+.inner_form_block_btn {
+  min-width: 232px;
+  background-color: rgb(129, 13, 13);
+  border-radius: 12px;
+  color: #ebebee;
+  padding: 12px 24px;
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  cursor: pointer;
+}
+.inner_form_block_btn:hover {
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  background-color: rgb(197, 24, 24);
+}
+
+.inner_form_block_form_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 110%;
+}
+
+.button_block {
+  margin: 0 auto;
+}
+
+.inner_table_block {
+  border-radius: 12px;
+  padding: 80px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 2px 3px 0.2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 2px 3px 0.2px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  gap: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 110%;
+}
+.inner_table_block a {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 110%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+  cursor: pointer;
+  color: #0000c5;
+}
+.inner_table_block table,
+.inner_table_block thead {
+  border-radius: 12px;
+  border-bottom: 1px solid #000;
+  border: 1px solid #000;
+}
+.inner_table_block th,
+.inner_table_block td {
+  padding: 5px;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
