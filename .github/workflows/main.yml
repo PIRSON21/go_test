@@ -2,8 +2,8 @@ name: Build and Release
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'  # Эта настройка будет срабатывать, когда пушится тег, начинающийся с "v"
 
 jobs:
   build:
@@ -16,23 +16,23 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.23'
+          go-version: '1.18'
 
       - name: Install dependencies
         run: go mod tidy
 
       - name: Build Go program
-        run: go build -o server.exe
+        run: go build -o my_program.exe
 
       - name: Archive templates and styles using PowerShell
         run: |
-          Compress-Archive -Path templates, styles -DestinationPath release_files.zip  # Архивируем папки с помощью PowerShell
+          Compress-Archive -Path templates, styles -DestinationPath release_files.zip
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            server.exe
+            my_program.exe
             release_files.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
