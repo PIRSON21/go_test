@@ -24,9 +24,9 @@ jobs:
       - name: Build Go program
         run: go build -o server.exe
 
-      - name: Archive templates and styles
+      - name: Archive templates and styles using PowerShell
         run: |
-          zip -r release_files.zip templates/ styles/  # Архивируем папки в один файл
+          Compress-Archive -Path templates, styles -DestinationPath release_files.zip  # Архивируем папки с помощью PowerShell
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
